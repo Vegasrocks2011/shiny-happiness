@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olympiad Chemistry — revision and practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EFEEF3; --card:#F8F7FA; --ink:#241F2E; --muted:#615A6E;
+  --rule:#D4D0DC; --violet:#55467F; --amber:#A85F18; --slate:#41627C; --mark:#E7E4EE;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#16141C; --card:#1E1B26; --ink:#E7E4EE; --muted:#A49CB4;
+    --rule:#332E3E; --violet:#A99BD6; --amber:#E0A160; --slate:#8FB4CE; --mark:#272231;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#16141C; --card:#1E1B26; --ink:#E7E4EE; --muted:#A49CB4;
+  --rule:#332E3E; --violet:#A99BD6; --amber:#E0A160; --slate:#8FB4CE; --mark:#272231;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Serif",Georgia,serif; font-size:17px; line-height:1.62; -webkit-text-size-adjust:100%}
+h1,h2,h3,.ui{font-family:"IBM Plex Sans",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+a{color:var(--violet)}
+
+header.top{border-bottom:1px solid var(--rule); background:var(--card)}
+.top-inner{max-width:1180px; margin:0 auto; padding:26px 22px 22px}
+h1{font-size:1.5rem; font-weight:600; margin:0 0 4px; letter-spacing:-.01em}
+.sub{color:var(--muted); font-size:.95rem; margin:0 0 20px; max-width:62ch}
+.controls{display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end}
+.ctrl-label{font-family:"IBM Plex Sans",sans-serif; font-size:.74rem; color:var(--muted); display:block; margin-bottom:6px}
+.segmented{display:flex; border:1px solid var(--rule); border-radius:3px; overflow:hidden}
+.segmented button{font-family:"IBM Plex Sans",sans-serif; font-size:.84rem; padding:7px 13px;
+  background:transparent; color:var(--ink); border:0; cursor:pointer; border-right:1px solid var(--rule)}
+.segmented button:last-child{border-right:0}
+.segmented button[aria-pressed="true"]{background:var(--violet); color:var(--card)}
+.segmented button:focus-visible{outline:2px solid var(--slate); outline-offset:-2px}
+.meter{font-family:"IBM Plex Sans",sans-serif; font-size:.84rem; color:var(--muted)}
+.meter strong{color:var(--ink); font-weight:600}
+.linkbtn{font-family:"IBM Plex Sans",sans-serif; font-size:.8rem; background:none; border:0;
+  color:var(--muted); text-decoration:underline; cursor:pointer; padding:0}
+
+.key{max-width:1180px; margin:0 auto; padding:18px 22px 0; display:flex; flex-wrap:wrap; gap:18px}
+.key-item{display:flex; gap:9px; align-items:flex-start; font-size:.87rem; max-width:33ch}
+.chip{flex:none; margin-top:4px; width:12px; height:12px; border-radius:2px}
+.chip.igcse{background:var(--slate)} .chip.quick{background:var(--violet)} .chip.hard{background:var(--amber)}
+.key-item span{color:var(--muted)}
+.key-item b{font-family:"IBM Plex Sans",sans-serif; font-size:.8rem; font-weight:600; color:var(--ink); display:block}
+.keynote{margin:0 auto; padding:14px 22px 0; font-size:.88rem; color:var(--muted); max-width:78ch}
+
+.wrap{max-width:1180px; margin:0 auto; padding:26px 22px 80px; display:grid; grid-template-columns:230px 1fr; gap:44px}
+nav.toc{position:sticky; top:20px; align-self:start; max-height:calc(100vh - 40px); overflow-y:auto}
+nav.toc ol{list-style:none; margin:0; padding:0}
+nav.toc li{margin-bottom:2px}
+nav.toc a{font-family:"IBM Plex Sans",sans-serif; font-size:.83rem; text-decoration:none; color:var(--muted);
+  display:flex; gap:8px; padding:4px 6px; border-radius:3px; line-height:1.35}
+nav.toc a:hover{background:var(--mark); color:var(--ink)}
+nav.toc a .n{color:var(--rule); flex:none; width:15px; text-align:right; font-variant-numeric:tabular-nums}
+nav.toc a.done{color:var(--violet)}
+nav.toc a.done::after{content:"✓"; margin-left:auto; font-size:.75rem}
+nav.toc .grouphd{font-family:"IBM Plex Sans",sans-serif; font-size:.72rem; color:var(--muted); margin:14px 0 5px 21px}
+nav.toc .grouphd:first-child{margin-top:0}
+
+main{min-width:0; max-width:78ch}
+.topic{border-top:1px solid var(--rule); padding:30px 0 34px}
+.topic:first-child{border-top:0; padding-top:4px}
+.topic-head{display:flex; gap:12px; align-items:baseline; margin-bottom:4px}
+.topic h2{font-size:1.16rem; font-weight:600; margin:0; letter-spacing:-.005em}
+.flag{flex:none; width:11px; height:11px; border-radius:2px; transform:translateY(-1px)}
+.flag.igcse{background:var(--slate)} .flag.quick{background:var(--violet)} .flag.hard{background:var(--amber)}
+.flagtext{font-family:"IBM Plex Sans",sans-serif; font-size:.76rem; color:var(--muted); margin:0 0 16px 23px}
+.topic p{margin:0 0 13px}
+.topic ul,.topic ol.body{margin:0 0 14px; padding-left:20px}
+.topic li{margin-bottom:5px}
+.topic h3{font-size:.9rem; font-weight:600; margin:18px 0 8px; color:var(--muted)}
+.eq{font-family:"IBM Plex Sans",sans-serif; font-size:.95rem; background:var(--mark);
+  padding:9px 13px; border-radius:3px; margin:0 0 14px; overflow-x:auto}
+
+table{border-collapse:collapse; width:100%; margin:6px 0 16px; font-size:.92rem}
+th,td{text-align:left; padding:6px 10px 6px 0; border-bottom:1px solid var(--rule); vertical-align:top}
+th{font-family:"IBM Plex Sans",sans-serif; font-size:.77rem; font-weight:600; color:var(--muted)}
+.tablescroll{overflow-x:auto}
+
+.ext{border-left:3px solid var(--amber); padding:2px 0 2px 15px; margin:0 0 15px}
+.ext > .extlabel{font-family:"IBM Plex Sans",sans-serif; font-size:.74rem; color:var(--amber); display:block; margin-bottom:6px}
+body.tier1 [data-tier="2"]{display:none}
+
+.recall{background:var(--card); border:1px solid var(--rule); border-radius:4px; padding:6px 17px 8px; margin:16px 0 11px}
+.recall > .rlabel{font-family:"IBM Plex Sans",sans-serif; font-size:.74rem; color:var(--muted); display:block; margin:10px 0 4px}
+.recall details{border-top:1px solid var(--rule); padding:9px 0}
+.recall details:first-of-type{border-top:0}
+.recall summary{font-family:"IBM Plex Serif",serif; font-size:.95rem; color:var(--ink); cursor:pointer; list-style:none; display:flex; gap:9px}
+.recall summary::-webkit-details-marker{display:none}
+.recall summary::before{content:"?"; font-family:"IBM Plex Sans",sans-serif; font-size:.78rem; color:var(--violet); flex:none; width:12px}
+.recall details[open] summary::before{content:"✓"; color:var(--muted)}
+.recall summary:focus-visible{outline:2px solid var(--slate); outline-offset:3px}
+.rans{margin:7px 0 0 21px; font-size:.93rem; color:var(--muted)}
+
+.q{background:var(--card); border:1px solid var(--rule); border-radius:4px; padding:15px 17px; margin:0 0 11px}
+.q > p{margin:0; font-size:.97rem}
+.qnum{font-family:"IBM Plex Sans",sans-serif; font-size:.72rem; color:var(--muted); display:block; margin-bottom:5px}
+.q details{margin-top:11px}
+.q summary{font-family:"IBM Plex Sans",sans-serif; font-size:.82rem; color:var(--violet); cursor:pointer; width:max-content}
+.q details[open] summary{color:var(--muted)}
+.ans{margin-top:9px; padding-top:11px; border-top:1px solid var(--rule); font-size:.95rem}
+.ans p{margin:0 0 9px} .ans p:last-child{margin:0}
+
+.done-row{margin-top:20px}
+.done-row label{font-family:"IBM Plex Sans",sans-serif; font-size:.82rem; color:var(--muted);
+  display:inline-flex; gap:8px; align-items:center; cursor:pointer}
+.done-row input{width:15px; height:15px; accent-color:var(--violet); cursor:pointer}
+
+.papers{background:var(--card); border:1px solid var(--rule); border-radius:4px; padding:20px 22px; margin-top:34px}
+.papers h2{font-size:1.05rem; margin:0 0 10px}
+.papers p{font-size:.94rem; margin:0 0 12px}
+.papers ul{margin:0; padding-left:20px; font-size:.94rem}
+.papers li{margin-bottom:7px}
+footer{max-width:1180px; margin:0 auto; padding:0 22px 50px; font-size:.85rem; color:var(--muted)}
+
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr; gap:0; padding-top:18px}
+  nav.toc{position:static; max-height:none; margin-bottom:26px; border-bottom:1px solid var(--rule); padding-bottom:18px}
+  body{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+</head>
+<body class="tier1">
+
+<header class="top">
+  <div class="top-inner">
+    <h1>Olympiad Chemistry</h1>
+    <p class="sub">The calculations are where the marks are won and lost, so most topics here end with worked problems rather than recall prompts. Do them on paper before opening the answer — reading a solution is not the same as producing one.</p>
+    <div class="controls">
+      <div>
+        <span class="ctrl-label" id="tierlab">Your category</span>
+        <div class="segmented" role="group" aria-labelledby="tierlab">
+          <button type="button" id="t1" aria-pressed="true">Years 8–9</button>
+          <button type="button" id="t2" aria-pressed="false">Years 10–11</button>
+        </div>
+      </div>
+      <div>
+        <span class="ctrl-label">Progress</span>
+        <span class="meter"><strong id="count">0</strong> of 18 topics done · <button class="linkbtn" id="reset" type="button">clear</button></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="key">
+  <div class="key-item"><span class="chip igcse"></span><span><b>IGCSE material</b>Core chemistry. Years 10–11 have met it.</span></div>
+  <div class="key-item"><span class="chip quick"></span><span><b>Beyond IGCSE, quick</b>New to everyone, but not hard.</span></div>
+  <div class="key-item"><span class="chip hard"></span><span><b>Beyond IGCSE, demanding</b>Genuinely A-level. Budget time.</span></div>
+</div>
+<p class="keynote">Years 8–9: treat the blue topics as new too — you haven't reached IGCSE yet. The flag tells you how much support the rest of the school system has already given you, and for you the answer is usually none. The good news is that your syllabus stops before the hardest material.</p>
+
+<div class="wrap">
+
+<nav class="toc" aria-label="Contents">
+  <p class="grouphd">Atoms and the periodic table</p>
+  <ol>
+    <li><a href="#s1"><span class="n">1</span>Atoms and isotopes</a></li>
+    <li><a href="#s2"><span class="n">2</span>Electron configuration</a></li>
+    <li><a href="#s3"><span class="n">3</span>The periodic table</a></li>
+    <li><a href="#s4"><span class="n">4</span>Periodic trends</a></li>
+  </ol>
+  <p class="grouphd">Bonding and structure</p>
+  <ol>
+    <li><a href="#s5"><span class="n">5</span>Types of bonding</a></li>
+    <li><a href="#s6"><span class="n">6</span>Shapes and polarity</a></li>
+    <li><a href="#s7"><span class="n">7</span>Intermolecular forces</a></li>
+    <li><a href="#s8"><span class="n">8</span>Oxides</a></li>
+  </ol>
+  <p class="grouphd">Reactions and calculations</p>
+  <ol>
+    <li><a href="#s9"><span class="n">9</span>Reaction types and balancing</a></li>
+    <li><a href="#s10"><span class="n">10</span>The mole</a></li>
+    <li><a href="#s11"><span class="n">11</span>Redox</a></li>
+    <li><a href="#s12"><span class="n">12</span>Concentration</a></li>
+  </ol>
+  <p class="grouphd">Solutions and analysis</p>
+  <ol>
+    <li><a href="#s13"><span class="n">13</span>Acids and bases</a></li>
+    <li><a href="#s14"><span class="n">14</span>Titrations</a></li>
+    <li><a href="#s15"><span class="n">15</span>Solubility</a></li>
+    <li><a href="#s16"><span class="n">16</span>Identifying ions</a></li>
+  </ol>
+  <p class="grouphd">Physical chemistry</p>
+  <ol>
+    <li><a href="#s17"><span class="n">17</span>Gases</a></li>
+    <li><a href="#s18"><span class="n">18</span>Lab skills and errors</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<!-- 1 -->
+<section class="topic" id="s1">
+  <div class="topic-head"><span class="flag igcse"></span><h2>Atoms and isotopes</h2></div>
+  <p class="flagtext">Foundation for everything else. The relative atomic mass calculation appears constantly.</p>
+
+  <div class="tablescroll">
+  <table>
+    <tr><th>Particle</th><th>Charge</th><th>Relative mass</th><th>Where</th></tr>
+    <tr><td>Proton</td><td>+1</td><td>1</td><td>Nucleus</td></tr>
+    <tr><td>Neutron</td><td>0</td><td>1</td><td>Nucleus</td></tr>
+    <tr><td>Electron</td><td>−1</td><td>1/1836 — negligible</td><td>Orbitals around the nucleus</td></tr>
+  </table>
+  </div>
+
+  <p><strong>Atomic number (Z)</strong> is the number of protons, and it defines the element. <strong>Mass number (A)</strong> is protons plus neutrons. <strong>Isotopes</strong> are atoms of the same element with different numbers of neutrons — same chemistry, different mass, because chemistry depends on electrons.</p>
+
+  <p>Relative atomic mass is the weighted average across the natural isotopes:</p>
+  <div class="eq">A<sub>r</sub> = Σ (isotope mass × % abundance) ÷ 100</div>
+
+  <div class="ext" data-tier="2">
+    <span class="extlabel">Years 10–11</span>
+    <p><strong>Radioactive decay.</strong> An <em>alpha</em> particle is a helium nucleus: emitting one reduces A by 4 and Z by 2. <em>Beta-minus</em> decay converts a neutron into a proton and an electron: A is unchanged, Z increases by 1. <em>Gamma</em> emission is energy only — neither A nor Z changes.</p>
+    <p>Penetration increases in the same order: alpha is stopped by paper, beta by a few millimetres of aluminium, gamma needs thick lead. Ionising power runs the other way — alpha is the most ionising because it is large and doubly charged.</p>
+  </div>
+
+  <div class="q">
+    <span class="qnum">Worked question</span>
+    <p>Chlorine exists as two isotopes: chlorine-35 at 75.8% abundance and chlorine-37 at 24.2%. Calculate the relative atomic mass to three significant figures, and explain why a periodic table shows 35.5 rather than a whole number.</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p>A<sub>r</sub> = (35 × 75.8 + 37 × 24.2) ÷ 100</p>
+        <p>= (2653 + 895.4) ÷ 100 = 3548.4 ÷ 100 = <strong>35.5</strong></p>
+        <p>The value is not a whole number because it is an average across isotopes that occur in fixed proportions in nature, weighted by how common each one is. No individual chlorine atom has a mass of 35.5 — each is either 35 or 37. The value sits closer to 35 because chlorine-35 is roughly three times more abundant.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>Why do isotopes of an element behave identically in chemical reactions?</summary>
+      <p class="rans">Chemical behaviour is determined by the electrons, and isotopes have the same number of protons and therefore the same electron arrangement. The extra neutrons change mass but not charge or bonding.</p></details>
+    <details><summary>An ion has 16 protons, 18 neutrons and 18 electrons. Identify it and give its symbol with mass number and charge.</summary>
+      <p class="rans">16 protons means sulfur. Mass number = 16 + 18 = 34. Two more electrons than protons gives a 2− charge. So it is ³⁴S²⁻, the sulfide ion.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s1"> Mark this topic done</label></div>
+</section>
+
+<!-- 2 -->
+<section class="topic" id="s2">
+  <div class="topic-head"><span class="flag hard"></span><h2>Electron configuration</h2></div>
+  <p class="flagtext">Well beyond IGCSE — quantum numbers are A-level. But the rules are mechanical once learned.</p>
+
+  <p>Electrons occupy shells (n = 1, 2, 3 …), divided into subshells that hold different numbers of electrons: <strong>s</strong> holds 2, <strong>p</strong> holds 6, <strong>d</strong> holds 10, <strong>f</strong> holds 14.</p>
+
+  <p>Three rules govern filling:</p>
+  <ul>
+    <li><strong>Aufbau</strong> — fill the lowest energy subshell first. The order is 1s, 2s, 2p, 3s, 3p, <em>4s, 3d</em>, 4p. Note that 4s fills before 3d.</li>
+    <li><strong>Pauli exclusion</strong> — no two electrons in an atom can have the same set of four quantum numbers. In practice: two electrons per orbital, with opposite spins.</li>
+    <li><strong>Hund's rule</strong> — within a subshell, occupy every orbital singly with parallel spins before any pairing begins. Electrons repel, so they spread out first.</li>
+  </ul>
+
+  <h3>Quantum numbers</h3>
+  <div class="tablescroll">
+  <table>
+    <tr><th>Symbol</th><th>Name</th><th>Values</th><th>Describes</th></tr>
+    <tr><td>n</td><td>Principal</td><td>1, 2, 3 …</td><td>Shell — size and energy</td></tr>
+    <tr><td>l</td><td>Azimuthal</td><td>0 to n−1</td><td>Subshell shape: 0 = s, 1 = p, 2 = d</td></tr>
+    <tr><td>m<sub>l</sub></td><td>Magnetic</td><td>−l to +l</td><td>Which orbital within the subshell</td></tr>
+  </table>
+  </div>
+  <p>So for n = 2, l can be 0 or 1. When l = 1 (a p subshell), m<sub>l</sub> can be −1, 0 or +1 — three p orbitals, holding six electrons in total.</p>
+
+  <p><strong>Forming ions:</strong> electrons are removed from the outermost shell first. For transition metals that means 4s before 3d, even though 4s was filled first. Two anomalies to know: chromium is [Ar]3d⁵4s¹ and copper is [Ar]3d¹⁰4s¹, because half-filled and fully filled d subshells are unusually stable.</p>
+
+  <div class="ext" data-tier="2">
+    <span class="extlabel">Years 10–11</span>
+    <p>A species with unpaired electrons is <strong>paramagnetic</strong> and is attracted into a magnetic field. One with all electrons paired is <strong>diamagnetic</strong> and is weakly repelled. So predicting magnetism is just a matter of writing the configuration and counting unpaired electrons.</p>
+  </div>
+
+  <div class="q">
+    <span class="qnum">Worked question</span>
+    <p>Write the full electron configuration of an iron atom (Z = 26) and of the Fe³⁺ ion. State whether Fe³⁺ is paramagnetic.</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p>Fe: 1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d⁶ — twenty-six electrons, filling in Aufbau order with 4s before 3d.</p>
+        <p>Fe³⁺: remove three electrons, taking the two 4s electrons first and then one 3d. That gives 1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁵.</p>
+        <p>The 3d⁵ arrangement has five electrons in five orbitals, so by Hund's rule each sits alone with parallel spin — five unpaired electrons. Fe³⁺ is strongly paramagnetic.</p>
+        <p>The trap here is removing 3d electrons first because 3d was written last. Removal always takes the outermost shell, and n = 4 is outside n = 3.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>How many orbitals are in a d subshell, and how do you know from the quantum numbers?</summary>
+      <p class="rans">Five. For a d subshell l = 2, so m<sub>l</sub> runs from −2 to +2: five values, five orbitals, ten electrons.</p></details>
+    <details><summary>Why is chromium [Ar]3d⁵4s¹ rather than [Ar]3d⁴4s²?</summary>
+      <p class="rans">Promoting one 4s electron into 3d gives a half-filled d subshell with all five orbitals singly occupied. That symmetrical arrangement minimises repulsion and is lower in energy than the expected configuration.</p></details>
+    <details><summary>State Hund's rule and give the physical reason for it.</summary>
+      <p class="rans">Electrons occupy degenerate orbitals singly with parallel spins before pairing. Two electrons in the same orbital repel each other, so spreading out across available orbitals is energetically cheaper.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s2"> Mark this topic done</label></div>
+</section>
+
+<!-- 3 -->
+<section class="topic" id="s3">
+  <div class="topic-head"><span class="flag igcse"></span><h2>The periodic table</h2></div>
+  <p class="flagtext">Short. The transition metal properties are the part most often missed.</p>
+
+  <p>Elements are arranged by increasing atomic number. A <strong>group</strong> is a column — same number of outer electrons, similar chemistry. A <strong>period</strong> is a row — same number of occupied shells.</p>
+  <p><strong>Main group</strong> elements are the s and p blocks: groups 1, 2 and 13 to 18. Their chemistry is dominated by achieving a full outer shell, so their charges are predictable.</p>
+  <p><strong>Transition metals</strong> are the d block, and they behave differently in four ways worth learning as a set:</p>
+  <ul>
+    <li>Variable oxidation states — because 4s and 3d electrons are close in energy, so differing numbers can be lost.</li>
+    <li>Coloured compounds and solutions.</li>
+    <li>Catalytic activity, both as the metal and as its compounds.</li>
+    <li>They form complex ions with ligands.</li>
+  </ul>
+  <p>They are also generally harder, denser and higher melting than group 1 and 2 metals.</p>
+  <p>Metals occupy the left and centre, non-metals the top right, and metalloids — silicon, germanium, arsenic and others — sit along the diagonal staircase between them, showing intermediate behaviour.</p>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>Why do elements in the same group have similar chemical properties?</summary>
+      <p class="rans">They have the same number of outer-shell electrons, and it is the outer electrons that take part in bonding. So they form ions of the same charge and react in the same way, differing mainly in vigour.</p></details>
+    <details><summary>Why do transition metals show variable oxidation states when sodium only ever forms Na⁺?</summary>
+      <p class="rans">In transition metals the 3d and 4s subshells are very close in energy, so different numbers of electrons can be removed for a similar energy cost. Sodium has one outer electron; removing a second would break into a full inner shell at prohibitive energy cost.</p></details>
+    <details><summary>Give three properties that distinguish a transition metal from a group 1 metal.</summary>
+      <p class="rans">Variable oxidation states rather than one fixed state; coloured compounds rather than white; catalytic activity. Also higher density, hardness and melting point.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s3"> Mark this topic done</label></div>
+</section>
+
+<!-- 4 -->
+<section class="topic" id="s4">
+  <div class="topic-head"><span class="flag quick"></span><h2>Periodic trends</h2></div>
+  <p class="flagtext">Every trend comes from the same two competing factors. Learn those and you can derive the rest.</p>
+
+  <p>Two factors explain nearly every trend. <strong>Nuclear charge</strong> — more protons pull electrons in harder. <strong>Shielding and distance</strong> — inner shells screen the outer electrons from the nucleus, and each new shell puts them further away.</p>
+  <p>Across a period, protons increase but electrons go into the <em>same</em> shell, so shielding barely changes and the net pull increases. Down a group, an extra shell is added each time, so distance and shielding win.</p>
+
+  <div class="tablescroll">
+  <table>
+    <tr><th>Property</th><th>Across a period →</th><th>Down a group ↓</th></tr>
+    <tr><td>Atomic radius</td><td>Decreases</td><td>Increases</td></tr>
+    <tr><td>Electronegativity</td><td>Increases</td><td>Decreases</td></tr>
+    <tr><td>Electron affinity</td><td>More exothermic</td><td>Less exothermic</td></tr>
+    <tr><td>Metallic character</td><td>Decreases</td><td>Increases</td></tr>
+    <tr><td data-tier="2">Ionisation energy</td><td data-tier="2">Increases</td><td data-tier="2">Decreases</td></tr>
+  </table>
+  </div>
+
+  <p>Fluorine is the most electronegative element. Reactivity depends on which way the element needs to go: group 1 metals get <em>more</em> reactive down the group because losing an electron gets easier, while group 17 non-metals get <em>less</em> reactive down the group because gaining one gets harder.</p>
+  <p><strong>Ionic radii:</strong> a cation is always smaller than its parent atom — it has lost a whole shell and the remaining electrons are pulled in harder. An anion is always larger, because added electrons increase repulsion without any increase in nuclear charge.</p>
+
+  <div class="ext" data-tier="2">
+    <span class="extlabel">Years 10–11</span>
+    <p>The ionisation energy trend across a period is not perfectly smooth, and the two dips are commonly examined.</p>
+    <p>There is a dip from group 2 to group 13 (for example Be to B) because the electron being removed is now a p electron, which is higher in energy and slightly shielded by the filled s subshell.</p>
+    <p>There is a second dip from group 15 to group 16 (N to O). In nitrogen the three p electrons sit singly in separate orbitals; in oxygen the fourth must pair up, and the repulsion between paired electrons makes it easier to remove.</p>
+  </div>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>Why does atomic radius decrease across a period despite adding electrons?</summary>
+      <p class="rans">The added electrons go into the same shell, so shielding hardly increases, while each step adds a proton. The stronger nuclear charge pulls the whole electron cloud closer.</p></details>
+    <details><summary>Why is a sodium ion much smaller than a sodium atom?</summary>
+      <p class="rans">Na loses its single outer-shell electron, so the entire third shell is gone and the ion's outermost electrons are in shell 2. Eleven protons now attract ten electrons, pulling them in more tightly still.</p></details>
+    <details><summary>Why is caesium more reactive than lithium, but fluorine more reactive than iodine?</summary>
+      <p class="rans">Group 1 metals react by losing an electron, which gets easier further down as the outer electron is further from the nucleus and better shielded. Halogens react by gaining an electron, which gets harder further down for exactly the same reason. The same trend produces opposite effects because the reactions are opposite.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s4"> Mark this topic done</label></div>
+</section>
+
+<!-- 5 -->
+<section class="topic" id="s5">
+  <div class="topic-head"><span class="flag igcse"></span><h2>Types of bonding</h2></div>
+  <p class="flagtext">Core IGCSE. Link each bond type to the properties it produces.</p>
+
+  <div class="tablescroll">
+  <table>
+    <tr><th>Bond</th><th>Between</th><th>What happens</th><th>Properties</th></tr>
+    <tr><td>Ionic</td><td>Metal + non-metal</td><td>Electrons transferred; ions attract in a giant lattice</td><td>High mp; conducts only when molten or dissolved; brittle; often water-soluble</td></tr>
+    <tr><td>Covalent (simple)</td><td>Non-metal + non-metal</td><td>Electron pairs shared</td><td>Low mp — weak forces <em>between</em> molecules; does not conduct</td></tr>
+    <tr><td>Covalent (giant)</td><td>Non-metal networks</td><td>Continuous covalent network</td><td>Very high mp; diamond, silicon dioxide; graphite conducts</td></tr>
+    <tr><td>Metallic</td><td>Metal atoms</td><td>Cations in a sea of delocalised electrons</td><td>Conducts in all states; malleable; generally high mp</td></tr>
+  </table>
+  </div>
+
+  <p>A <strong>dative (coordinate)</strong> bond is a covalent bond in which both shared electrons come from the same atom. Examples: the fourth N–H bond in NH₄⁺ and the third O–H bond in H₃O⁺. Once formed it is identical to any other covalent bond.</p>
+
+  <p>The most commonly confused point: a simple covalent substance has low melting point not because the covalent bonds are weak — they are strong — but because melting only has to overcome the much weaker forces <em>between</em> separate molecules. The bonds inside each molecule stay intact.</p>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>Why does solid sodium chloride not conduct electricity but molten sodium chloride does?</summary>
+      <p class="rans">Conduction needs mobile charge carriers. In the solid, ions are fixed in the lattice. Melting frees them to move, so the liquid conducts.</p></details>
+    <details><summary>Diamond and graphite are both pure carbon. Why does only graphite conduct?</summary>
+      <p class="rans">In diamond each carbon forms four covalent bonds, so every outer electron is localised in a bond. In graphite each carbon bonds to only three others, leaving one electron per atom delocalised between the layers and free to move.</p></details>
+    <details><summary>Why are metals malleable but ionic solids brittle?</summary>
+      <p class="rans">In a metal, layers of cations can slide past one another while the delocalised electrons continue to hold them together. In an ionic lattice, sliding brings like charges next to like, and the resulting repulsion splits the crystal apart.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s5"> Mark this topic done</label></div>
+</section>
+
+<!-- 6 -->
+<section class="topic" id="s6">
+  <div class="topic-head"><span class="flag hard"></span><h2>Shapes and polarity</h2></div>
+  <p class="flagtext">VSEPR is A-level and reliably examined. Learn the six shapes and the lone pair rule.</p>
+
+  <p>VSEPR theory: electron pairs around a central atom repel and arrange themselves as far apart as possible. Count the <em>regions</em> of electron density — a double or triple bond counts as one region.</p>
+  <p>The one refinement that generates most exam marks: <strong>lone pairs repel more strongly than bonding pairs</strong>, so each lone pair squeezes the remaining bond angles down by roughly 2.5°.</p>
+
+  <div class="tablescroll">
+  <table>
+    <tr><th>Regions</th><th>Bonding / lone</th><th>Shape</th><th>Angle</th><th>Example</th></tr>
+    <tr><td>2</td><td>2 / 0</td><td>Linear</td><td>180°</td><td>CO₂</td></tr>
+    <tr><td>3</td><td>3 / 0</td><td>Trigonal planar</td><td>120°</td><td>BF₃</td></tr>
+    <tr><td>3</td><td>2 / 1</td><td>Bent</td><td>~118°</td><td>SO₂</td></tr>
+    <tr><td>4</td><td>4 / 0</td><td>Tetrahedral</td><td>109.5°</td><td>CH₄</td></tr>
+    <tr><td>4</td><td>3 / 1</td><td>Trigonal pyramidal</td><td>~107°</td><td>NH₃</td></tr>
+    <tr><td>4</td><td>2 / 2</td><td>Bent</td><td>~104.5°</td><td>H₂O</td></tr>
+    <tr><td>5</td><td>5 / 0</td><td>Trigonal bipyramidal</td><td>90° and 120°</td><td>PCl₅</td></tr>
+    <tr><td>6</td><td>6 / 0</td><td>Octahedral</td><td>90°</td><td>SF₆</td></tr>
+  </table>
+  </div>
+
+  <h3>Polarity</h3>
+  <p>A <em>bond</em> is polar if the two atoms differ in electronegativity. A <em>molecule</em> is polar only if those bond dipoles fail to cancel — which depends entirely on shape.</p>
+  <p>CO₂ has two strongly polar C=O bonds, but the molecule is linear and symmetrical, so the dipoles point in exactly opposite directions and cancel: non-polar. H₂O has similar bonds but is bent, so they do not cancel: polar. CCl₄ is tetrahedral and symmetrical: non-polar. CHCl₃ breaks that symmetry: polar.</p>
+
+  <div class="ext" data-tier="2">
+    <span class="extlabel">Years 10–11</span>
+    <p><strong>Hybridisation</strong> is read straight off the number of regions: 2 regions is <em>sp</em>, 3 is <em>sp²</em>, 4 is <em>sp³</em>. So carbon in methane is sp³, in ethene sp², in ethyne sp. Nitrogen in ammonia is sp³ even though one region is a lone pair — lone pairs count.</p>
+  </div>
+
+  <div class="q">
+    <span class="qnum">Worked question</span>
+    <p>Predict the shape and bond angle of NH₃ and of NH₄⁺, and explain why they differ. State whether each is polar.</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p>NH₃: nitrogen has five outer electrons, three used in bonding and two as a lone pair. That gives four regions of electron density — three bonding, one lone. The four regions adopt a tetrahedral arrangement, but only the atoms define the shape, so it is <strong>trigonal pyramidal</strong>. The lone pair repels more strongly than the bonding pairs, compressing the angle from 109.5° to about <strong>107°</strong>. It is polar: the N–H dipoles do not cancel, and the lone pair adds to the dipole.</p>
+        <p>NH₄⁺: the lone pair has been used to form a dative bond with H⁺. Now there are four regions, all bonding, all equivalent. The shape is <strong>tetrahedral</strong> at exactly <strong>109.5°</strong>. It is symmetrical, so the bond dipoles cancel and the ion has no net dipole — though it does of course carry an overall charge, which is a different thing.</p>
+        <p>The lesson: gaining a proton removed the lone pair, which removed both the extra repulsion and the asymmetry.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>CO₂ and SO₂ both have two oxygens on a central atom. Why is one linear and non-polar, the other bent and polar?</summary>
+      <p class="rans">Carbon in CO₂ has no lone pair — two regions, linear, dipoles cancel. Sulfur in SO₂ has a lone pair — three regions, bent at about 118°, so the dipoles do not cancel and the molecule is polar.</p></details>
+    <details><summary>Why is the bond angle in water smaller than in ammonia?</summary>
+      <p class="rans">Water has two lone pairs to ammonia's one. Each lone pair compresses the bonding angle by roughly 2.5°, so water reaches about 104.5° against ammonia's 107°.</p></details>
+    <details><summary>Can a molecule with polar bonds be non-polar overall? Give an example.</summary>
+      <p class="rans">Yes, if the shape is symmetrical enough that the dipoles cancel. CCl₄ has four polar C–Cl bonds arranged tetrahedrally, and they cancel exactly, leaving a non-polar molecule.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s6"> Mark this topic done</label></div>
+</section>
+
+<!-- 7 -->
+<section class="topic" id="s7">
+  <div class="topic-head"><span class="flag quick"></span><h2>Intermolecular forces</h2></div>
+  <p class="flagtext">Short topic, high return. Explains boiling points, solubility and all of water's oddities.</p>
+
+  <p>Three types, weakest to strongest for molecules of similar size:</p>
+  <ul>
+    <li><strong>London dispersion forces</strong> — present between all molecules. Arise from momentary uneven electron distribution inducing a dipole in a neighbour. Stronger in larger molecules with more electrons.</li>
+    <li><strong>Dipole–dipole</strong> — between permanently polar molecules.</li>
+    <li><strong>Hydrogen bonding</strong> — a special, much stronger case, occurring only when hydrogen is bonded directly to <strong>nitrogen, oxygen or fluorine</strong> and interacts with a lone pair on an adjacent N, O or F.</li>
+  </ul>
+  <p>These are forces <em>between</em> molecules, always far weaker than the covalent bonds within them. Boiling breaks the former, not the latter.</p>
+
+  <p><strong>Why water is strange.</strong> Ice floats because hydrogen bonds hold the molecules in an open lattice that is less dense than liquid water — almost uniquely, the solid is less dense than the liquid. Water also has an unexpectedly high boiling point for so small a molecule, a high specific heat capacity, and high surface tension, all from the same cause.</p>
+  <p><strong>Solubility</strong> follows "like dissolves like": polar solvents dissolve polar and ionic solutes, non-polar solvents dissolve non-polar solutes. Oil and water do not mix because water molecules hydrogen-bond preferentially to each other and exclude the non-polar oil.</p>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>Why does H₂O boil at 100 °C while H₂S, a heavier molecule, boils at −60 °C?</summary>
+      <p class="rans">Water molecules hydrogen-bond to each other because H is bonded to O. Sulfur is not electronegative enough for hydrogen bonding, so H₂S has only weak dipole–dipole and dispersion forces. Despite its greater mass, far less energy is needed to separate its molecules.</p></details>
+    <details><summary>Why does boiling point increase down the halogens from F₂ to I₂?</summary>
+      <p class="rans">All are non-polar, so only dispersion forces act. Larger molecules have more electrons and a more polarisable electron cloud, giving stronger instantaneous dipoles and therefore stronger dispersion forces.</p></details>
+    <details><summary>Why does ice float?</summary>
+      <p class="rans">Hydrogen bonds hold water molecules in a rigid open hexagonal structure with more empty space than in the liquid, where molecules pack more closely. Lower density means the solid floats — which is why lakes freeze from the top down.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s7"> Mark this topic done</label></div>
+</section>
+
+<!-- 8 -->
+<section class="topic" id="s8">
+  <div class="topic-head"><span class="flag quick"></span><h2>Oxides</h2></div>
+  <p class="flagtext">Very short. One trend and one special case.</p>
+
+  <p>The acid–base character of an oxide follows straight from the metal–non-metal divide.</p>
+  <ul>
+    <li><strong>Metal oxides are basic.</strong> Soluble ones give alkaline solutions: Na₂O + H₂O → 2NaOH. They neutralise acids.</li>
+    <li><strong>Non-metal oxides are acidic.</strong> SO₂, SO₃, CO₂ and NO₂ dissolve to give acids — SO₃ + H₂O → H₂SO₄. They neutralise bases.</li>
+    <li><strong>Amphoteric oxides react with both.</strong> Al₂O₃ and ZnO are the standard examples, sitting near the metal–non-metal boundary.</li>
+    <li><strong>Neutral oxides</strong> react with neither: CO, NO, N₂O.</li>
+  </ul>
+  <p>Across a period, oxides shift from basic on the left, through amphoteric in the middle, to acidic on the right — following the loss of metallic character.</p>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>Predict whether MgO or SO₃ gives an alkaline solution in water, and justify.</summary>
+      <p class="rans">MgO. Magnesium is a metal, so its oxide is basic and forms Mg(OH)₂. Sulfur is a non-metal, so SO₃ is acidic and forms sulfuric acid.</p></details>
+    <details><summary>What does "amphoteric" mean, and name an oxide that is?</summary>
+      <p class="rans">It reacts with both acids and bases. Aluminium oxide is the standard example — it dissolves in hydrochloric acid to give aluminium chloride and in sodium hydroxide to give an aluminate.</p></details>
+    <details><summary>Why does burning fossil fuels containing sulfur cause acid rain?</summary>
+      <p class="rans">Combustion produces sulfur dioxide, a non-metal oxide. It dissolves in atmospheric water to form sulfurous and ultimately sulfuric acid, lowering the pH of rainfall.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s8"> Mark this topic done</label></div>
+</section>
+
+<!-- 9 -->
+<section class="topic" id="s9">
+  <div class="topic-head"><span class="flag igcse"></span><h2>Reaction types and balancing</h2></div>
+  <p class="flagtext">Balancing is a skill, not a fact. Practise until it is automatic.</p>
+
+  <div class="tablescroll">
+  <table>
+    <tr><th>Type</th><th>Pattern</th><th>Example</th></tr>
+    <tr><td>Combination</td><td>A + B → AB</td><td>2Mg + O₂ → 2MgO</td></tr>
+    <tr><td>Decomposition</td><td>AB → A + B</td><td>CaCO₃ → CaO + CO₂</td></tr>
+    <tr><td>Single displacement</td><td>A + BC → AC + B</td><td>Zn + CuSO₄ → ZnSO₄ + Cu</td></tr>
+    <tr><td>Double displacement</td><td>AB + CD → AD + CB</td><td>AgNO₃ + NaCl → AgCl↓ + NaNO₃</td></tr>
+    <tr><td>Neutralisation</td><td>acid + base → salt + water</td><td>HCl + NaOH → NaCl + H₂O</td></tr>
+    <tr><td>Combustion</td><td>fuel + O₂ → CO₂ + H₂O</td><td>CH₄ + 2O₂ → CO₂ + 2H₂O</td></tr>
+  </table>
+  </div>
+
+  <p><strong>A reliable balancing order:</strong> metals first, then non-metals other than hydrogen and oxygen, then hydrogen, then oxygen last. Oxygen usually appears in the most places, so leaving it until the end means fewer corrections. If you end up needing a half, multiply everything through at the finish.</p>
+
+  <div class="q">
+    <span class="qnum">Worked question</span>
+    <p>Balance the combustion of propane: C₃H₈ + O₂ → CO₂ + H₂O.</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p>No metals, so start with carbon. Three carbons on the left means 3CO₂ on the right.</p>
+        <p>Hydrogen next. Eight hydrogens means 4H₂O.</p>
+        <p>C₃H₈ + O₂ → 3CO₂ + 4H₂O</p>
+        <p>Oxygen last. The right now has (3 × 2) + 4 = 10 oxygen atoms, so the left needs 5O₂.</p>
+        <p><strong>C₃H₈ + 5O₂ → 3CO₂ + 4H₂O</strong></p>
+        <p>Check: carbon 3 = 3, hydrogen 8 = 8, oxygen 10 = 10. Leaving oxygen until last is what makes this painless — balance it first and every subsequent adjustment breaks it again.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="q">
+    <span class="qnum">Try this one</span>
+    <p>Balance: Fe₂O₃ + CO → Fe + CO₂</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p>Iron first: two on the left, so 2Fe on the right.</p>
+        <p>Carbon is 1:1 so far. Oxygen: left has 3 (from Fe₂O₃) + 1 (from CO) = 4; right has 2. Try 3CO and 3CO₂ to keep carbon balanced: left oxygen = 3 + 3 = 6, right = 3 × 2 = 6.</p>
+        <p><strong>Fe₂O₃ + 3CO → 2Fe + 3CO₂</strong></p>
+        <p>Check: Fe 2 = 2, C 3 = 3, O 6 = 6. This is the blast furnace reaction, so it is worth recognising on sight.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s9"> Mark this topic done</label></div>
+</section>
+
+<!-- 10 -->
+<section class="topic" id="s10">
+  <div class="topic-head"><span class="flag igcse"></span><h2>The mole</h2></div>
+  <p class="flagtext">The single most important calculation topic. Everything quantitative runs through it.</p>
+
+  <div class="eq">n = m ÷ M     n = N ÷ N<sub>A</sub>     n = c × V</div>
+  <p>where n is moles, m mass in grams, M molar mass in g mol⁻¹, N the number of particles, N<sub>A</sub> = 6.022 × 10²³ mol⁻¹, c concentration in mol dm⁻³ and V volume in dm³.</p>
+
+  <p>Almost every stoichiometry problem follows the same three steps: convert what you are given into moles, use the balanced equation's ratio to find moles of what you want, then convert back into the units asked for.</p>
+
+  <h3>Empirical and molecular formulae</h3>
+  <p>Divide each element's mass or percentage by its A<sub>r</sub>, then divide all results by the smallest. That gives the empirical formula. The molecular formula is a whole-number multiple of it, found by comparing the empirical mass with the actual molar mass.</p>
+
+  <div class="q">
+    <span class="qnum">Worked question</span>
+    <p>A compound contains 40.0% carbon, 6.7% hydrogen and 53.3% oxygen by mass. Its molar mass is 180 g mol⁻¹. Find its empirical and molecular formulae.</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p>Take 100 g, so the percentages become grams. Divide by A<sub>r</sub>:</p>
+        <p>C: 40.0 ÷ 12 = 3.33 · H: 6.7 ÷ 1 = 6.7 · O: 53.3 ÷ 16 = 3.33</p>
+        <p>Divide by the smallest (3.33): C 1 · H 2.01 · O 1</p>
+        <p>Empirical formula <strong>CH₂O</strong>, with empirical mass 12 + 2 + 16 = 30.</p>
+        <p>180 ÷ 30 = 6, so the molecular formula is <strong>C₆H₁₂O₆</strong> — glucose.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="q">
+    <span class="qnum">Worked question — limiting reagent</span>
+    <p>8.0 g of methane is burned in 40.0 g of oxygen. Which is limiting, and what mass of carbon dioxide forms? (CH₄ + 2O₂ → CO₂ + 2H₂O)</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p>Moles of CH₄ = 8.0 ÷ 16 = 0.50 mol. Moles of O₂ = 40.0 ÷ 32 = 1.25 mol.</p>
+        <p>The equation needs 2 mol O₂ per mol CH₄, so 0.50 mol CH₄ requires 1.00 mol O₂. We have 1.25 mol, so oxygen is in excess and <strong>methane is limiting</strong>.</p>
+        <p>Work from the limiting reagent only. 0.50 mol CH₄ gives 0.50 mol CO₂.</p>
+        <p>Mass = 0.50 × 44 = <strong>22 g of CO₂</strong>.</p>
+        <p>The standard error is comparing masses directly — 40 g looks like much more than 8 g. You must compare moles against the equation's ratio, not masses.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>How many molecules are in 4.4 g of CO₂?</summary>
+      <p class="rans">n = 4.4 ÷ 44 = 0.10 mol. Molecules = 0.10 × 6.022 × 10²³ = 6.0 × 10²² molecules.</p></details>
+    <details><summary>Why can a compound's empirical and molecular formulae be the same?</summary>
+      <p class="rans">When the simplest whole-number ratio already is the actual number of atoms — water is H₂O both ways. The multiplier is simply 1.</p></details>
+    <details><summary>Percentage yield is 80% and theoretical yield 25 g. What mass was obtained?</summary>
+      <p class="rans">0.80 × 25 = 20 g.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s10"> Mark this topic done</label></div>
+</section>
+
+<!-- 11 -->
+<section class="topic" id="s11">
+  <div class="topic-head"><span class="flag quick"></span><h2>Redox</h2></div>
+  <p class="flagtext">Oxidation numbers are mechanical once you know the rules. Learn the rules, not examples.</p>
+
+  <p><strong>OIL RIG</strong> — Oxidation Is Loss of electrons, Reduction Is Gain. Equivalently, oxidation is an increase in oxidation number and reduction a decrease.</p>
+  <p>The agents are named for what they do to the <em>other</em> substance, which is why they seem backwards: an <strong>oxidising agent oxidises something else and is itself reduced</strong>. A reducing agent is itself oxidised.</p>
+
+  <h3>Assigning oxidation numbers</h3>
+  <ol class="body">
+    <li>An uncombined element is 0 — including O₂, Cl₂, and metals.</li>
+    <li>A monatomic ion equals its charge.</li>
+    <li>Fluorine is always −1.</li>
+    <li>Oxygen is −2, except −1 in peroxides and +2 in OF₂.</li>
+    <li>Hydrogen is +1, except −1 in metal hydrides such as NaH.</li>
+    <li>The sum is 0 for a neutral compound, or the charge for an ion.</li>
+  </ol>
+  <p>The rules are applied in order of priority when they conflict — fluorine beats oxygen, oxygen beats hydrogen.</p>
+
+  <div class="q">
+    <span class="qnum">Worked question</span>
+    <p>Find the oxidation number of manganese in MnO₄⁻, and of chromium in Cr₂O₇²⁻.</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p><strong>MnO₄⁻:</strong> four oxygens at −2 give −8. The total must equal the ion's charge, −1. So Mn + (−8) = −1, giving Mn = <strong>+7</strong>.</p>
+        <p><strong>Cr₂O₇²⁻:</strong> seven oxygens at −2 give −14. Total must be −2. So 2Cr − 14 = −2, giving 2Cr = +12 and Cr = <strong>+6</strong>.</p>
+        <p>Both are high oxidation states, which is why permanganate and dichromate are powerful oxidising agents — there is a long way down to fall, and the manganese or chromium readily accepts electrons.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>In Zn + CuSO₄ → ZnSO₄ + Cu, identify what is oxidised, what is reduced, and the oxidising agent.</summary>
+      <p class="rans">Zinc goes from 0 to +2 — it loses electrons, so it is oxidised and is the reducing agent. Copper goes from +2 to 0 — it gains electrons, so it is reduced, and Cu²⁺ is the oxidising agent.</p></details>
+    <details><summary>Why is oxygen −1 rather than −2 in hydrogen peroxide?</summary>
+      <p class="rans">In H₂O₂ the two oxygens are bonded to each other. Hydrogen must be +1, giving +2 total, so the two oxygens must sum to −2, making each −1. This is the standard exception.</p></details>
+    <details><summary>A substance is described as a strong reducing agent. Is it easily oxidised or easily reduced?</summary>
+      <p class="rans">Easily oxidised. It reduces other things by giving away electrons, and in doing so is oxidised itself.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s11"> Mark this topic done</label></div>
+</section>
+
+<!-- 12 -->
+<section class="topic" id="s12">
+  <div class="topic-head"><span class="flag quick"></span><h2>Concentration</h2></div>
+  <p class="flagtext">Molarity is familiar; molality is not, and the difference between them is examined.</p>
+
+  <div class="tablescroll">
+  <table>
+    <tr><th>Measure</th><th>Definition</th><th>Units</th></tr>
+    <tr><td>Molarity (M)</td><td>moles of solute per litre of <em>solution</em></td><td>mol dm⁻³</td></tr>
+    <tr><td>Molality (m)</td><td>moles of solute per kilogram of <em>solvent</em></td><td>mol kg⁻¹</td></tr>
+    <tr><td>Mole fraction</td><td>moles of one component ÷ total moles</td><td>no units</td></tr>
+    <tr><td>ppm</td><td>parts per million by mass</td><td>mg per kg</td></tr>
+  </table>
+  </div>
+
+  <p>Two differences matter. Molarity uses the volume of the <em>whole solution</em>, molality the mass of <em>solvent alone</em>. And molarity changes with temperature because liquids expand, while molality does not because mass is unaffected by temperature. That is why careful physical chemistry uses molality.</p>
+
+  <p><strong>Dilution:</strong> c₁V₁ = c₂V₂, since moles of solute are unchanged by adding water.</p>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>Why does molarity change with temperature but molality does not?</summary>
+      <p class="rans">Molarity is per unit volume, and solutions expand when heated — the same moles now occupy a larger volume, so the concentration falls. Molality is per kilogram of solvent, and mass does not change with temperature.</p></details>
+    <details><summary>What volume of 2.0 mol dm⁻³ solution is needed to make 250 cm³ of 0.40 mol dm⁻³?</summary>
+      <p class="rans">c₁V₁ = c₂V₂, so V₁ = (0.40 × 250) ÷ 2.0 = 50 cm³, made up to 250 cm³ with water.</p></details>
+    <details><summary>How would you prepare 500 cm³ of 0.100 mol dm⁻³ NaOH from the solid?</summary>
+      <p class="rans">n = 0.100 × 0.500 = 0.0500 mol. M(NaOH) = 40, so mass = 2.00 g. Dissolve in a little water, transfer to a 500 cm³ volumetric flask with washings, then make up to the mark and invert to mix.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s12"> Mark this topic done</label></div>
+</section>
+
+<!-- 13 -->
+<section class="topic" id="s13">
+  <div class="topic-head"><span class="flag hard"></span><h2>Acids and bases</h2></div>
+  <p class="flagtext">Three definitions, pH calculations and salt hydrolysis. Dense but very heavily examined.</p>
+
+  <div class="tablescroll">
+  <table>
+    <tr><th>Theory</th><th>Acid</th><th>Base</th><th>Scope</th></tr>
+    <tr><td>Arrhenius</td><td>Releases H⁺ in water</td><td>Releases OH⁻ in water</td><td>Narrowest — water only</td></tr>
+    <tr><td>Brønsted–Lowry</td><td>Proton donor</td><td>Proton acceptor</td><td>Any solvent; gives conjugate pairs</td></tr>
+    <tr><td>Lewis</td><td>Electron pair acceptor</td><td>Electron pair donor</td><td>Broadest — includes BF₃ and metal ions</td></tr>
+  </table>
+  </div>
+  <p>A <strong>conjugate pair</strong> differs by exactly one proton. In HCl + H₂O → Cl⁻ + H₃O⁺, HCl and Cl⁻ are one pair, H₂O and H₃O⁺ the other. A strong acid has a weak conjugate base, and vice versa.</p>
+
+  <h3>pH</h3>
+  <p>Water self-ionises: 2H₂O ⇌ H₃O⁺ + OH⁻, with</p>
+  <div class="eq">K<sub>w</sub> = [H⁺][OH⁻] = 1.0 × 10⁻¹⁴ at 25 °C</div>
+  <div class="eq">pH = −log[H⁺]   ·   pOH = −log[OH⁻]   ·   pH + pOH = 14</div>
+  <p>A strong acid dissociates completely, so [H⁺] equals its concentration. A weak acid does not, so its pH is higher than the concentration alone would suggest.</p>
+
+  <h3>Salt hydrolysis</h3>
+  <p>A salt's solution is not automatically neutral. Look at which parent acid and base it came from:</p>
+  <ul>
+    <li>Strong acid + strong base → <strong>neutral</strong> (NaCl)</li>
+    <li>Strong acid + weak base → <strong>acidic</strong> (NH₄Cl)</li>
+    <li>Weak acid + strong base → <strong>basic</strong> (CH₃COONa)</li>
+  </ul>
+  <p>The reason: the ion derived from the <em>weak</em> parent is itself a significant acid or base and reacts with water, while the ion from the strong parent is inert.</p>
+
+  <div class="ext" data-tier="2">
+    <span class="extlabel">Years 10–11</span>
+    <p><strong>K<sub>a</sub> and K<sub>b</sub></strong> measure the extent of dissociation of a weak acid or base. A larger K<sub>a</sub> means a stronger acid; pK<sub>a</sub> = −log K<sub>a</sub>, so a <em>smaller</em> pK<sub>a</sub> means a stronger acid. For a conjugate pair, K<sub>a</sub> × K<sub>b</sub> = K<sub>w</sub>.</p>
+    <p><strong>Buffers</strong> resist pH change on adding small amounts of acid or base. A buffer is a weak acid together with its conjugate base in comparable amounts. Added H⁺ is mopped up by the conjugate base; added OH⁻ is neutralised by the weak acid. The reservoir of both species is what does the work, which is why a strong acid cannot buffer — it has no undissociated reserve.</p>
+  </div>
+
+  <div class="q">
+    <span class="qnum">Worked question</span>
+    <p>Calculate the pH of 0.0050 mol dm⁻³ HCl, and the pH of 0.0050 mol dm⁻³ NaOH.</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p><strong>HCl</strong> is a strong acid and fully dissociates, so [H⁺] = 5.0 × 10⁻³.</p>
+        <p>pH = −log(5.0 × 10⁻³) = <strong>2.30</strong></p>
+        <p><strong>NaOH</strong> is a strong base, so [OH⁻] = 5.0 × 10⁻³ and pOH = 2.30.</p>
+        <p>pH = 14 − 2.30 = <strong>11.70</strong></p>
+        <p>The common mistake is applying −log directly to the NaOH concentration and reporting 2.30. Always ask whether the number you have is [H⁺] or [OH⁻] before taking the logarithm.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>Why is a solution of ammonium chloride acidic?</summary>
+      <p class="rans">It comes from a strong acid (HCl) and a weak base (NH₃). The chloride ion is inert, but the ammonium ion donates a proton to water, producing H₃O⁺ and lowering the pH.</p></details>
+    <details><summary>BF₃ has no hydrogen at all. Why is it classed as an acid?</summary>
+      <p class="rans">Under the Lewis definition an acid accepts an electron pair. Boron in BF₃ has only six outer electrons and an empty orbital, so it readily accepts a lone pair. It is a Lewis acid but not a Brønsted one.</p></details>
+    <details><summary>If pH falls by 2 units, what happens to [H⁺]?</summary>
+      <p class="rans">It increases 100-fold. The scale is logarithmic, so each unit is a factor of ten.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s13"> Mark this topic done</label></div>
+</section>
+
+<!-- 14 -->
+<section class="topic" id="s14">
+  <div class="topic-head"><span class="flag igcse"></span><h2>Titrations</h2></div>
+  <p class="flagtext">The calculation is routine. Indicator choice is the part that separates marks.</p>
+
+  <p>Apparatus and roles: a <em>pipette</em> delivers a precise fixed volume into the conical flask; a <em>burette</em> delivers a variable, measured volume; a <em>volumetric flask</em> makes up a standard solution to an exact volume. Swirl continuously and rinse the flask walls near the end point.</p>
+  <p>The <strong>equivalence point</strong> is where the reagents have reacted in exact stoichiometric ratio. The <strong>end point</strong> is where the indicator changes colour. A good titration chooses an indicator that makes these two coincide.</p>
+
+  <div class="ext" data-tier="2">
+    <span class="extlabel">Years 10–11</span>
+    <p>A titration curve plots pH against volume added, and has a steep vertical section around the equivalence point. <strong>Choose an indicator whose colour-change range falls inside that vertical section.</strong></p>
+    <div class="tablescroll">
+    <table>
+      <tr><th>Titration</th><th>pH at equivalence</th><th>Indicator</th></tr>
+      <tr><td>Strong acid–strong base</td><td>7</td><td>Either (very long vertical section)</td></tr>
+      <tr><td>Strong acid–weak base</td><td>Below 7</td><td>Methyl orange (3.1–4.4)</td></tr>
+      <tr><td>Weak acid–strong base</td><td>Above 7</td><td>Phenolphthalein (8.3–10.0)</td></tr>
+      <tr><td>Weak acid–weak base</td><td>Varies</td><td>None suitable — no sharp jump</td></tr>
+    </table>
+    </div>
+    <p>The equivalence point is not at pH 7 unless both reagents are strong, because the salt formed hydrolyses.</p>
+  </div>
+
+  <div class="q">
+    <span class="qnum">Worked question</span>
+    <p>25.0 cm³ of sodium hydroxide solution required 22.4 cm³ of 0.100 mol dm⁻³ sulfuric acid for neutralisation. Calculate the concentration of the sodium hydroxide.</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p>Equation: H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O. The ratio is 1:2, and this is where marks are usually lost.</p>
+        <p>Moles of H₂SO₄ = 0.100 × (22.4 ÷ 1000) = 2.24 × 10⁻³ mol</p>
+        <p>Moles of NaOH = 2 × 2.24 × 10⁻³ = 4.48 × 10⁻³ mol</p>
+        <p>Concentration = 4.48 × 10⁻³ ÷ (25.0 ÷ 1000) = <strong>0.179 mol dm⁻³</strong></p>
+        <p>Always write the balanced equation before calculating. Assuming 1:1 here would give 0.0896 — exactly half the right answer, and a very common error with diprotic acids.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>Why does rinsing the conical flask with the solution being titrated cause an error, when rinsing the burette with the titrant does not?</summary>
+      <p class="rans">Rinsing the flask leaves extra moles of the substance being analysed behind, so more titrant is needed and the result is too high. The burette must be rinsed with titrant, because water left inside would dilute it and give a reading that is too high as well.</p></details>
+    <details><summary data-tier="2">Why is phenolphthalein wrong for titrating ammonia with hydrochloric acid?</summary>
+      <p class="rans">That is a strong acid with a weak base, so the equivalence point lies below pH 7. Phenolphthalein changes between 8.3 and 10, well above the vertical section, so it would change colour long before the equivalence point. Methyl orange is correct.</p></details>
+    <details><summary>Why are concordant titres — within 0.10 cm³ of each other — required before taking a mean?</summary>
+      <p class="rans">They show the results are reproducible and that random error is small. Averaging in a rough or anomalous titre would shift the mean away from the true value.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s14"> Mark this topic done</label></div>
+</section>
+
+<!-- 15 -->
+<section class="topic" id="s15">
+  <div class="topic-head"><span class="flag quick"></span><h2>Solubility</h2></div>
+  <p class="flagtext">The solubility rules are pure memorisation and pay off in every precipitation question.</p>
+
+  <ul>
+    <li>All group 1 and ammonium salts are <strong>soluble</strong>.</li>
+    <li>All nitrates are <strong>soluble</strong>.</li>
+    <li>Most chlorides, bromides and iodides are soluble — <em>except</em> silver and lead.</li>
+    <li>Most sulfates are soluble — <em>except</em> barium, lead, and calcium which is slightly soluble.</li>
+    <li>Most carbonates and hydroxides are <strong>insoluble</strong> — except group 1 and ammonium.</li>
+  </ul>
+  <p>A solution is <em>unsaturated</em> if more solute would dissolve, <em>saturated</em> if it has dissolved the maximum at that temperature, and <em>supersaturated</em> if it holds more than the maximum — an unstable state made by cooling a saturated solution carefully, which crystallises suddenly when disturbed.</p>
+
+  <div class="ext" data-tier="2">
+    <span class="extlabel">Years 10–11</span>
+    <p>For a sparingly soluble salt, the <strong>solubility product</strong> is the equilibrium constant for dissolving. For AgCl ⇌ Ag⁺ + Cl⁻, K<sub>sp</sub> = [Ag⁺][Cl⁻]. If solubility is <em>s</em>, then K<sub>sp</sub> = s².</p>
+    <p>For a salt of type AB₂, such as Mg(OH)₂, the ions are <em>s</em> and 2<em>s</em>, so K<sub>sp</sub> = s × (2s)² = <strong>4s³</strong>. Forgetting to square the coefficient is the standard error.</p>
+    <p><strong>The common ion effect:</strong> adding a solution already containing one of the ions pushes the equilibrium left and reduces solubility. AgCl is less soluble in sodium chloride solution than in pure water.</p>
+    <p>To predict precipitation, calculate the ion product Q the same way as K<sub>sp</sub>. If Q &gt; K<sub>sp</sub>, a precipitate forms.</p>
+  </div>
+
+  <div class="q" data-tier="2">
+    <span class="qnum">Worked question · Years 10–11</span>
+    <p>The solubility of Mg(OH)₂ is 1.4 × 10⁻⁴ mol dm⁻³. Calculate its K<sub>sp</sub>.</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p>Mg(OH)₂ ⇌ Mg²⁺ + 2OH⁻</p>
+        <p>If s = 1.4 × 10⁻⁴, then [Mg²⁺] = s and [OH⁻] = 2s = 2.8 × 10⁻⁴.</p>
+        <p>K<sub>sp</sub> = [Mg²⁺][OH⁻]² = s × (2s)² = 4s³</p>
+        <p>= 4 × (1.4 × 10⁻⁴)³ = 4 × 2.74 × 10⁻¹² = <strong>1.1 × 10⁻¹¹</strong></p>
+        <p>Two places to go wrong: forgetting that [OH⁻] is twice the solubility, and forgetting that the concentration is also <em>squared</em> because of the coefficient 2 in the equation. Both are needed.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>Mixing barium chloride and sodium sulfate solutions gives a white precipitate. Identify it and write the ionic equation.</summary>
+      <p class="rans">Barium sulfate. Ba²⁺(aq) + SO₄²⁻(aq) → BaSO₄(s). Sodium and chloride stay in solution as spectator ions, since all sodium salts and most chlorides are soluble.</p></details>
+    <details><summary>Will lead nitrate and potassium iodide solutions produce a precipitate?</summary>
+      <p class="rans">Yes — lead iodide, a bright yellow precipitate. All nitrates and potassium salts are soluble, but lead is one of the two exceptions to halides being soluble.</p></details>
+    <details><summary data-tier="2">Why is silver chloride less soluble in 0.1 mol dm⁻³ NaCl than in pure water?</summary>
+      <p class="rans">The common ion effect. The added chloride raises [Cl⁻], and since K<sub>sp</sub> must stay constant, [Ag⁺] must fall — the equilibrium shifts towards undissolved solid.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s15"> Mark this topic done</label></div>
+</section>
+
+<!-- 16 -->
+<section class="topic" id="s16">
+  <div class="topic-head"><span class="flag igcse"></span><h2>Identifying ions and gases</h2></div>
+  <p class="flagtext">Pure recall, and the tables below are the whole topic. Quick marks.</p>
+
+  <h3>Flame tests</h3>
+  <div class="tablescroll">
+  <table>
+    <tr><th>Ion</th><th>Colour</th><th>Ion</th><th>Colour</th></tr>
+    <tr><td>Lithium</td><td>Crimson</td><td>Calcium</td><td>Orange-red</td></tr>
+    <tr><td>Sodium</td><td>Yellow-orange</td><td>Copper(II)</td><td>Blue-green</td></tr>
+    <tr><td>Potassium</td><td>Lilac</td><td>Barium</td><td>Apple green</td></tr>
+  </table>
+  </div>
+
+  <h3>Cations, using sodium hydroxide solution</h3>
+  <div class="tablescroll">
+  <table>
+    <tr><th>Ion</th><th>With a little NaOH</th><th>With excess NaOH</th></tr>
+    <tr><td>Cu²⁺</td><td>Blue precipitate</td><td>Insoluble</td></tr>
+    <tr><td>Fe²⁺</td><td>Green precipitate</td><td>Insoluble; darkens on standing</td></tr>
+    <tr><td>Fe³⁺</td><td>Red-brown precipitate</td><td>Insoluble</td></tr>
+    <tr><td>Al³⁺</td><td>White precipitate</td><td><strong>Dissolves</strong> — the distinguishing test</td></tr>
+    <tr><td>Ca²⁺</td><td>White precipitate</td><td>Insoluble</td></tr>
+    <tr><td>NH₄⁺</td><td>No precipitate</td><td>Warm: ammonia gas turns damp red litmus blue</td></tr>
+  </table>
+  </div>
+  <p>Aluminium and calcium both give white precipitates, so the excess test is what tells them apart — aluminium hydroxide is amphoteric and redissolves.</p>
+
+  <h3>Anions</h3>
+  <div class="tablescroll">
+  <table>
+    <tr><th>Ion</th><th>Test</th><th>Result</th></tr>
+    <tr><td>Carbonate</td><td>Add dilute acid</td><td>Fizzing; gas turns limewater milky</td></tr>
+    <tr><td>Sulfate</td><td>Acidify, add barium chloride</td><td>White precipitate</td></tr>
+    <tr><td>Chloride</td><td>Acidify, add silver nitrate</td><td>White precipitate</td></tr>
+    <tr><td>Bromide</td><td>Acidify, add silver nitrate</td><td>Cream precipitate</td></tr>
+    <tr><td>Iodide</td><td>Acidify, add silver nitrate</td><td>Yellow precipitate</td></tr>
+  </table>
+  </div>
+
+  <h3>Gases</h3>
+  <div class="tablescroll">
+  <table>
+    <tr><th>Gas</th><th>Test</th></tr>
+    <tr><td>Oxygen</td><td>Relights a glowing splint</td></tr>
+    <tr><td>Hydrogen</td><td>Squeaky pop with a lit splint</td></tr>
+    <tr><td>Carbon dioxide</td><td>Turns limewater milky</td></tr>
+    <tr><td>Ammonia</td><td>Turns damp red litmus blue</td></tr>
+    <tr><td>Chlorine</td><td>Bleaches damp litmus paper</td></tr>
+  </table>
+  </div>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>Why must the solution be acidified before adding silver nitrate or barium chloride?</summary>
+      <p class="rans">To remove carbonate ions, which would otherwise form their own white precipitate of silver carbonate or barium carbonate and give a false positive.</p></details>
+    <details><summary>Two solutions both give a white precipitate with NaOH. How do you distinguish aluminium from calcium?</summary>
+      <p class="rans">Add excess sodium hydroxide. The aluminium hydroxide precipitate redissolves because it is amphoteric; the calcium hydroxide does not. A flame test also works — calcium gives orange-red, aluminium gives nothing.</p></details>
+    <details><summary>An unknown solid fizzes with dilute acid and gives a lilac flame. Identify it.</summary>
+      <p class="rans">Potassium carbonate. Fizzing with acid releasing CO₂ indicates carbonate; lilac indicates potassium.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s16"> Mark this topic done</label></div>
+</section>
+
+<!-- 17 -->
+<section class="topic" id="s17">
+  <div class="topic-head"><span class="flag quick"></span><h2>Gases</h2></div>
+  <p class="flagtext">One equation and five assumptions. The constant is given to you in the exam.</p>
+
+  <div class="eq">PV = nRT</div>
+  <p>R = 8.314 J K⁻¹ mol⁻¹ or 0.08206 L atm K⁻¹ mol⁻¹ — both appear on the formula sheet you will be given. Choose the one matching your units, and <strong>always convert temperature to kelvin</strong>: K = °C + 273.</p>
+  <p>The individual gas laws are all special cases: Boyle (P ∝ 1/V at constant T), Charles (V ∝ T at constant P), and Avogadro (V ∝ n). Combined: P₁V₁/T₁ = P₂V₂/T₂.</p>
+
+  <h3>Kinetic molecular theory</h3>
+  <p>The ideal gas model assumes: particles are in constant random motion; their own volume is negligible compared with the container; there are no forces between them; collisions are perfectly elastic; and average kinetic energy is proportional to absolute temperature.</p>
+  <p>Real gases deviate most at <strong>high pressure</strong> (particle volume is no longer negligible) and <strong>low temperature</strong> (intermolecular attractions become significant relative to kinetic energy). The assumptions tell you exactly when the model breaks.</p>
+
+  <div class="q">
+    <span class="qnum">Worked question</span>
+    <p>7.00 mol of an ideal gas occupies 16.0 L at 65 °C. Calculate the pressure in atmospheres.</p>
+    <details><summary>Show answer</summary>
+      <div class="ans">
+        <p>Convert temperature: T = 65 + 273 = 338 K.</p>
+        <p>Use R = 0.08206 L atm K⁻¹ mol⁻¹ to match litres and atmospheres.</p>
+        <p>P = nRT ÷ V = (7.00 × 0.08206 × 338) ÷ 16.0</p>
+        <p>= 194.2 ÷ 16.0 = <strong>12.1 atm</strong></p>
+        <p>The near-universal error is leaving temperature in Celsius. Using 65 instead of 338 would give 2.3 atm — a fivefold error from one missed conversion.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>A gas at constant temperature has its volume halved. What happens to its pressure, and why?</summary>
+      <p class="rans">It doubles. Boyle's law — the same number of particles in half the space hit the walls twice as often, so pressure doubles.</p></details>
+    <details><summary>Under what two conditions does a real gas deviate most from ideal behaviour?</summary>
+      <p class="rans">High pressure, where the particles' own volume becomes significant relative to the container, and low temperature, where intermolecular attractions matter compared with the reduced kinetic energy.</p></details>
+    <details><summary>Two gases at the same temperature: which assumption tells you their average kinetic energies are equal?</summary>
+      <p class="rans">That average kinetic energy is proportional to absolute temperature — so equal temperature means equal average kinetic energy regardless of the gas. The lighter gas compensates with a higher average speed.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s17"> Mark this topic done</label></div>
+</section>
+
+<!-- 18 -->
+<section class="topic" id="s18">
+  <div class="topic-head"><span class="flag quick"></span><h2>Lab skills and error analysis</h2></div>
+  <p class="flagtext">Explicitly on the syllabus and easy to overlook. There is no practical exam, but there are questions about practicals.</p>
+
+  <div class="tablescroll">
+  <table>
+    <tr><th>Apparatus</th><th>Use it when</th></tr>
+    <tr><td>Pipette</td><td>Delivering one precise fixed volume</td></tr>
+    <tr><td>Burette</td><td>Delivering a variable volume you need to measure</td></tr>
+    <tr><td>Volumetric flask</td><td>Making up a solution to an exact total volume</td></tr>
+    <tr><td>Measuring cylinder</td><td>Approximate volumes where precision does not matter</td></tr>
+  </table>
+  </div>
+
+  <h3>Two kinds of error</h3>
+  <p><strong>Random errors</strong> scatter readings either side of the true value. Repeating and averaging reduces them.</p>
+  <p><strong>Systematic errors</strong> shift every reading the same way — a miscalibrated balance, a burette read at the wrong angle. Repeating does <em>not</em> help; only identifying and correcting the cause does.</p>
+  <p>This maps onto <em>precision</em> (readings close to each other) and <em>accuracy</em> (readings close to the truth). A systematic error gives results that are precise but inaccurate, which is the distinction examiners test.</p>
+
+  <div class="eq">percentage error = (uncertainty ÷ measurement) × 100</div>
+  <p>A burette reading has an uncertainty of about ±0.05 cm³, and every titre involves <em>two</em> readings, so the total is ±0.10 cm³. Over a titre of 25.00 cm³ that is 0.4%. The same absolute uncertainty over a 5.00 cm³ titre is 2% — which is why small titres are avoided.</p>
+
+  <div class="recall">
+    <span class="rlabel">Check yourself</span>
+    <details><summary>A balance consistently reads 0.05 g high. Will repeating the measurement help?</summary>
+      <p class="rans">No. It is a systematic error, so every reading is shifted by the same amount and the mean is shifted too. It must be fixed by recalibrating or by subtracting the known offset.</p></details>
+    <details><summary>Calculate the percentage error in a titre of 12.50 cm³ from a burette.</summary>
+      <p class="rans">Two readings at ±0.05 cm³ give a total uncertainty of ±0.10 cm³. (0.10 ÷ 12.50) × 100 = 0.8%.</p></details>
+    <details><summary>Results are tightly clustered but all well away from the accepted value. Describe them.</summary>
+      <p class="rans">Precise but not accurate — the signature of a systematic error.</p></details>
+  </div>
+
+  <div class="done-row"><label><input type="checkbox" data-done="s18"> Mark this topic done</label></div>
+</section>
+
+<section class="papers">
+  <h2>What this deliberately leaves out</h2>
+  <p>The Years 10–11 syllabus also lists equilibrium and Gibbs free energy, enthalpy and Hess's law, lattice energy, phase diagrams, boiling point elevation, and a section of organic chemistry — nomenclature, stereochemistry, arrow-pushing mechanisms, and substitution and elimination reactions.</p>
+  <p>That is A-level and first-year undergraduate material, and the syllabus caps organic at 15–20% of the paper. With eight weeks across five subjects, the return on trying to teach it from scratch is poor compared with making sure the eighteen topics above are secure. If you finish those and want more, take them in this order — each is more learnable than the one after:</p>
+  <ul>
+    <li><strong>Le Chatelier's principle</strong> — qualitative, quick, and predictable in what it asks.</li>
+    <li><strong>Hess's law and enthalpy of formation</strong> — a calculation you can learn as a procedure.</li>
+    <li><strong>Phase diagrams</strong> — reading a graph, and water's backward-sloping line is the standard question.</li>
+    <li><strong>Organic nomenclature</strong> — naming alkanes, alkenes and simple functional groups. Rules, not reasoning.</li>
+  </ul>
+  <p>Leave mechanisms and Gibbs free energy alone. They need more time than they can repay here.</p>
+  <p style="margin-top:14px; margin-bottom:0"><strong>Practice sources the syllabus names:</strong> US National Chemistry Olympiad local exams from before 2015 at acs.org/olympiad, and IJSO chemistry papers from before 2018 at ijsoweb.org. Both are harder than this round, which makes them good practice and a poor measure of how you are doing. Khan Academy's chemistry problems are better matched to the level.</p>
+</section>
+
+</main>
+</div>
+
+<footer>Round 1 is on 14–16 November 2026. Al Yasmina British Academy science department.</footer>
+
+<script>
+(function(){
+  var KEY='huso-chem-progress-v1';
+  var boxes=Array.prototype.slice.call(document.querySelectorAll('[data-done]'));
+  var countEl=document.getElementById('count');
+  var links=Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+
+  function load(){ try{ var r=localStorage.getItem(KEY); return r?JSON.parse(r):{}; }catch(e){ return {}; } }
+  function save(s){ try{ localStorage.setItem(KEY,JSON.stringify(s)); }catch(e){} }
+  function paint(s){
+    var n=0;
+    boxes.forEach(function(b,i){
+      var on=!!s[b.getAttribute('data-done')];
+      b.checked=on; if(on){n++;}
+      if(links[i]){ links[i].classList.toggle('done',on); }
+    });
+    countEl.textContent=n;
+  }
+  var state=load(); paint(state);
+  boxes.forEach(function(b){
+    b.addEventListener('change',function(){
+      state[b.getAttribute('data-done')]=b.checked; save(state); paint(state);
+    });
+  });
+  document.getElementById('reset').addEventListener('click',function(){ state={}; save(state); paint(state); });
+
+  var t1=document.getElementById('t1'), t2=document.getElementById('t2');
+  function setTier(one){
+    document.body.classList.toggle('tier1',one);
+    t1.setAttribute('aria-pressed',one?'true':'false');
+    t2.setAttribute('aria-pressed',one?'false':'true');
+    try{ localStorage.setItem('huso-chem-tier',one?'1':'2'); }catch(e){}
+  }
+  t1.addEventListener('click',function(){setTier(true);});
+  t2.addEventListener('click',function(){setTier(false);});
+  try{ if(localStorage.getItem('huso-chem-tier')==='2'){ setTier(false); } }catch(e){}
+})();
+</script>
+</body>
+</html>
